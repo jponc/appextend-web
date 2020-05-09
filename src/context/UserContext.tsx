@@ -9,12 +9,14 @@ type UserContextType = {
   token: string;
   doneCheckingAuth: boolean;
   login: (username: string, password: string) => void;
+  logout: () => void;
 };
 
 const UserContext = createContext<UserContextType>({
   token: "",
   doneCheckingAuth: false,
   login: () => {},
+  logout: () => {}
 });
 
 const UserProvider: React.FC = (props) => {
@@ -32,10 +34,15 @@ const UserProvider: React.FC = (props) => {
     setTokenToStorage(requestedToken);
   };
 
+  const logout = () => {
+    setToken("");
+  };
+
   const contextValue = {
     token,
     doneCheckingAuth,
     login,
+    logout
   };
 
   return <UserContext.Provider value={contextValue} {...props} />;

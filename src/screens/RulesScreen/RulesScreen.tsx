@@ -1,10 +1,10 @@
 import React from "react";
 import { AppLayout } from "../../components/AppLayout";
 
-export const HomeScreen = () => {
+export const RulesScreen = () => {
   return (
-    <AppLayout title="Home">
-      <div>Home</div>
+    <AppLayout title="Rules">
+      <div>Rules</div>
     </AppLayout>
   )
 }
