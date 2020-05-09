@@ -28,10 +28,13 @@ const UserProvider: React.FC = (props) => {
     setDoneCheckingAuth(true);
   }, []);
 
+  useEffect(() => {
+    setTokenToStorage(token);
+  }, [token])
+
   const login = async (username: string, password: string) => {
     const requestedToken = await loginAction(username, password);
     setToken(requestedToken);
-    setTokenToStorage(requestedToken);
   };
 
   const logout = () => {
