@@ -24,7 +24,11 @@
     "start": "REACT_APP_STAGE=development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy:staging": "REACT_APP_STAGE=staging yarn run build",
+    "deploy:staging": "aws s3 sync build/ s3://staging.appextend.com --profile uptactics",
+    "postdeploy:staging": "aws cloudfront create-invalidation --distribution-id E1WYWP4JAH2VWU --paths '/*' --profile uptactics"
+
   },
   "eslintConfig": {
     "extends": "react-app"

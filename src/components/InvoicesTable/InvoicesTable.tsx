@@ -8,7 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import { InvoiceRow } from "../InvoiceRow/InvoiceRow";
+import { InvoiceRow } from "../InvoiceRow";
 
 const useStyles = makeStyles({
   table: {
