@@ -10,7 +10,7 @@ export const HomeScreen = () => {
   const { invoices, doneFetching } = useInvoices(token);
 
   return (
-    <AppLayout title="Home">
+    <AppLayout title="Invoices">
       {!doneFetching ? <Loading /> : <InvoicesTable invoices={invoices} />}
     </AppLayout>
   );

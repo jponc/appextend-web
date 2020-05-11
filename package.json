@@ -13,6 +13,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "dayjs": "^1.8.26",
+    "jsonwebtoken": "^8.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.1.2",
@@ -28,7 +29,6 @@
     "predeploy:staging": "REACT_APP_STAGE=staging yarn run build",
     "deploy:staging": "aws s3 sync build/ s3://staging.appextend.com --profile uptactics",
     "postdeploy:staging": "aws cloudfront create-invalidation --distribution-id E1WYWP4JAH2VWU --paths '/*' --profile uptactics"
-
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.3.9",
     "@types/react-router-dom": "^5.1.5"
   }
 }

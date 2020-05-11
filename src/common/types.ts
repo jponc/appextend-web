@@ -27,7 +27,10 @@ export type InvoiceLine = {
 };
 
 export type PurchaseOrder = {
-  id: string
-  invoiceId: string
-  number: string
-}
+  id: string;
+  number: string;
+  invoiceId: string;
+  vendorName: string;
+  vendorId: string;
+  amount: number;
+};
