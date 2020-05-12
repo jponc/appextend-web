@@ -34,3 +34,7 @@ export type PurchaseOrder = {
   vendorId: string;
   amount: number;
 };
+
+export type AppRules = {
+  GeneratePurchaseOrder: boolean
+}
