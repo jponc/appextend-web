@@ -5,8 +5,9 @@ import { useParams } from "react-router";
 import { useUser } from "../../context/UserContext";
 import { useInvoice } from "../../hooks/useInvoice";
 import { Grid, Paper } from "@material-ui/core";
-import { InvoiceLinesTable } from "../../components/InvoiceLinesTable"
-import { PurchaseOrdersTable } from "../../components/PurchaseOrdersTable"
+import { InvoiceLinesTable } from "../../components/InvoiceLinesTable";
+import { PurchaseOrdersTable } from "../../components/PurchaseOrdersTable";
+import { InvoiceInfo } from "../../components/InvoiceInfo";
 
 export type InvoiceScreenRouteParams = {
   invoiceId: string;
@@ -23,13 +24,13 @@ export const InvoiceScreen: React.FC = () => {
 
   return (
     <AppLayout title={title}>
-      {!doneFetching ? (
+      {!doneFetching || !invoice? (
         <Loading />
       ) : (
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <Paper>
-              left
+              <InvoiceInfo invoice={invoice} />
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
