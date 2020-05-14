@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
-  FormControlLabel,
   Checkbox,
   Button,
-  FormControl,
-  FormGroup,
+  TextField,
+  Grid,
+  Typography,
 } from "@material-ui/core";
 import { AppRules } from "../../common/types";
 
@@ -18,36 +18,56 @@ export const RulesForm: React.FC<RulesFormProps> = ({ rules, onSubmit }) => {
     isCheckedGeneratePurchaseOrder,
     setIsCheckedGeneratePurchaseOrder,
   ] = useState<boolean>(rules.GeneratePurchaseOrder);
+  const [amount, setAmount] = useState<string>(
+    rules.MinimumAmountPerVendorToCreatePurchaseOrder.toString()
+  );
 
   const onSubmitHandler = () => {
     const newRules: AppRules = {
-      GeneratePurchaseOrder: isCheckedGeneratePurchaseOrder
-    }
+      GeneratePurchaseOrder: isCheckedGeneratePurchaseOrder,
+      MinimumAmountPerVendorToCreatePurchaseOrder: parseInt(amount)
+    };
 
     onSubmit(newRules);
-  }
+  };
 
   return (
-    <FormGroup>
-      <FormControlLabel
-        control={
+    <>
+      <Grid container justify="center" direction="row">
+        <Grid item xs={6}>
+          <Typography variant="h6" gutterBottom>
+            Generate Purchase Order
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
           <Checkbox
             checked={isCheckedGeneratePurchaseOrder}
             onChange={() =>
-              setIsCheckedGeneratePurchaseOrder(
-                !isCheckedGeneratePurchaseOrder
-              )
+              setIsCheckedGeneratePurchaseOrder(!isCheckedGeneratePurchaseOrder)
             }
             name="GeneratePurchaseOrder"
             color="primary"
           />
-        }
-        label="GeneratePurchaseOrder"
-      />
+        </Grid>
+      </Grid>
+      <Grid container justify="center" direction="row">
+        <Grid item xs={6}>
+          <Typography variant="h6" gutterBottom>
+            Minimum amount to generate PO
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            label="Amount"
+          />
+        </Grid>
+      </Grid>
 
-      <FormControl>
-        <Button onClick={onSubmitHandler} variant="contained">Submit</Button>
-      </FormControl>
-    </FormGroup>
+      <Button onClick={onSubmitHandler} variant="contained">
+        Submit
+      </Button>
+    </>
   );
 };

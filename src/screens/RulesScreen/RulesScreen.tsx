@@ -28,7 +28,7 @@ export const RulesScreen = () => {
         <Loading />
       ) : (
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <RulesForm rules={rules} onSubmit={onSubmitHandler} />
           </Grid>
         </Grid>

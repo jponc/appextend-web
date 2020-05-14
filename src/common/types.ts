@@ -36,5 +36,6 @@ export type PurchaseOrder = {
 };
 
 export type AppRules = {
-  GeneratePurchaseOrder: boolean
-}
+  GeneratePurchaseOrder: boolean;
+  MinimumAmountPerVendorToCreatePurchaseOrder: number;
+};

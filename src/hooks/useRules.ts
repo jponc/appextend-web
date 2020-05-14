@@ -3,7 +3,7 @@ import { AppRules } from "../common/types";
 import {getRules, updateRules as updateRulesAction} from "../actions/rules";
 
 export const useRules = (token: string) => {
-  const [rules, setRules] = useState<AppRules>({ GeneratePurchaseOrder: true })
+  const [rules, setRules] = useState<AppRules>({ GeneratePurchaseOrder: true, MinimumAmountPerVendorToCreatePurchaseOrder: 150 })
   const [doneFetching, setDoneFetching] = useState<boolean>(false)
 
   useEffect(() => {
