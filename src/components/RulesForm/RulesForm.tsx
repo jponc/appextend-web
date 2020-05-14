@@ -22,10 +22,13 @@ export const RulesForm: React.FC<RulesFormProps> = ({ rules, onSubmit }) => {
     rules.MinimumAmountPerVendorToCreatePurchaseOrder.toString()
   );
 
+  const [itemNameMatcher, setItemNameMatcher] = useState<string>(rules.ItemNameMatcher);
+
   const onSubmitHandler = () => {
     const newRules: AppRules = {
       GeneratePurchaseOrder: isCheckedGeneratePurchaseOrder,
-      MinimumAmountPerVendorToCreatePurchaseOrder: parseInt(amount)
+      MinimumAmountPerVendorToCreatePurchaseOrder: parseInt(amount),
+      ItemNameMatcher: itemNameMatcher
     };
 
     onSubmit(newRules);
@@ -36,7 +39,7 @@ export const RulesForm: React.FC<RulesFormProps> = ({ rules, onSubmit }) => {
       <Grid container justify="center" direction="row">
         <Grid item xs={6}>
           <Typography variant="h6" gutterBottom>
-            Generate Purchase Order
+            Auto generate PO
           </Typography>
         </Grid>
         <Grid item xs={6}>
@@ -60,7 +63,21 @@ export const RulesForm: React.FC<RulesFormProps> = ({ rules, onSubmit }) => {
           <TextField
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            label="Amount"
+            label="Amount ($)"
+          />
+        </Grid>
+      </Grid>
+      <Grid container justify="center" direction="row">
+        <Grid item xs={6}>
+          <Typography variant="h6" gutterBottom>
+            Item name matcher
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            value={itemNameMatcher}
+            onChange={(e) => setItemNameMatcher(e.target.value)}
+            label="Regex"
           />
         </Grid>
       </Grid>

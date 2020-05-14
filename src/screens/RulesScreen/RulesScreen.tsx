@@ -24,7 +24,7 @@ export const RulesScreen = () => {
 
   return (
     <AppLayout title="Rules">
-      {!doneFetching ? (
+      {!doneFetching || !rules? (
         <Loading />
       ) : (
         <Grid container spacing={3}>
