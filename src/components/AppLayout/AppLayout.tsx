@@ -20,6 +20,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import LayersIcon from "@material-ui/icons/Layers";
 import ReceiptIcon from "@material-ui/icons/Receipt";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import StorefrontIcon from '@material-ui/icons/Storefront';
 import { usePreferences } from "../../context/PreferencesContext";
 import { useHistory } from "react-router";
 import { useUser } from "../../context/UserContext";
@@ -190,6 +191,12 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ title, children }) => {
                 <LayersIcon />
               </ListItemIcon>
               <ListItemText primary="Rules" />
+            </ListItem>
+            <ListItem button onClick={() => history.push("/vendors")}>
+              <ListItemIcon>
+                <StorefrontIcon />
+              </ListItemIcon>
+              <ListItemText primary="Vendors" />
             </ListItem>
           </div>
         </List>

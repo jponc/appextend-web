@@ -40,3 +40,9 @@ export type AppRules = {
   MinimumAmountPerVendorToCreatePurchaseOrder: number;
   ItemNameMatcher: string
 };
+
+export type Vendor = {
+  id: string;
+  name: string;
+  minimumAmount: number;
+}

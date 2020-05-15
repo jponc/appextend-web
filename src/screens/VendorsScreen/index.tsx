@@ -1,0 +1,1 @@
+export { VendorsScreen } from "./VendorsScreen";
