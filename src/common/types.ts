@@ -46,3 +46,9 @@ export type Vendor = {
   name: string;
   minimumAmount: number;
 }
+
+export type ActivityLog = {
+  resourceId: string; // Invoice_123
+  message: string;
+  createdAt: string;
+};
