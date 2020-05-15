@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Vendor } from "../common/types";
-import { getVendors } from "../actions/vendors";
+import {
+  getVendors,
+  createVendor as createVendorAction,
+} from "../actions/vendors";
 
 export const useVendors = (token: string) => {
   const [vendors, setVendors] = useState<Vendor[]>([]);
@@ -13,5 +16,10 @@ export const useVendors = (token: string) => {
     })();
   }, [token]);
 
-  return { vendors, doneFetching };
+  const createVendor = async (newVendor: Vendor) => {
+    await createVendorAction(token, newVendor);
+    setVendors(await getVendors(token))
+  };
+
+  return { vendors, doneFetching, createVendor };
 };
