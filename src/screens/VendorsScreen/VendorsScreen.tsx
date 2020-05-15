@@ -20,8 +20,8 @@ export const VendorsScreen = () => {
       await createVendor(newVendor);
       setSuccess("Successfully added");
       setIsModalOpen(false);
-    } catch {
-      setError("Error creating vendor");
+    } catch (e) {
+      setError(e.message);
     }
   };
 

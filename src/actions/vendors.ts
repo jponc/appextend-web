@@ -31,10 +31,11 @@ export const createVendor = async (
     }),
   });
 
-  if (!res.ok) {
-    throw new Error("Unauthorised");
+  const json = await res.json();
+
+  if (json.error) {
+    throw new Error(json.error);
   }
 
-  const json = await res.json();
   return json.body;
 };
