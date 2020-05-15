@@ -37,7 +37,6 @@ export type PurchaseOrder = {
 
 export type AppRules = {
   GeneratePurchaseOrder: boolean;
-  MinimumAmountPerVendorToCreatePurchaseOrder: number;
   ItemNameMatcher: string
 };
 

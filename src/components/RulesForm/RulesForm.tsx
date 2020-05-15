@@ -18,16 +18,12 @@ export const RulesForm: React.FC<RulesFormProps> = ({ rules, onSubmit }) => {
     isCheckedGeneratePurchaseOrder,
     setIsCheckedGeneratePurchaseOrder,
   ] = useState<boolean>(rules.GeneratePurchaseOrder);
-  const [amount, setAmount] = useState<string>(
-    rules.MinimumAmountPerVendorToCreatePurchaseOrder.toString()
-  );
 
   const [itemNameMatcher, setItemNameMatcher] = useState<string>(rules.ItemNameMatcher);
 
   const onSubmitHandler = () => {
     const newRules: AppRules = {
       GeneratePurchaseOrder: isCheckedGeneratePurchaseOrder,
-      MinimumAmountPerVendorToCreatePurchaseOrder: parseInt(amount),
       ItemNameMatcher: itemNameMatcher
     };
 
@@ -50,20 +46,6 @@ export const RulesForm: React.FC<RulesFormProps> = ({ rules, onSubmit }) => {
             }
             name="GeneratePurchaseOrder"
             color="primary"
-          />
-        </Grid>
-      </Grid>
-      <Grid container justify="center" direction="row">
-        <Grid item xs={6}>
-          <Typography variant="h6" gutterBottom>
-            Minimum amount to generate PO
-          </Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            label="Amount ($)"
           />
         </Grid>
       </Grid>
