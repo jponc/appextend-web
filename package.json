@@ -28,9 +28,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+
     "predeploy:staging": "REACT_APP_STAGE=staging yarn run build",
     "deploy:staging": "aws s3 sync build/ s3://staging.appextend.com --profile uptactics",
-    "postdeploy:staging": "aws cloudfront create-invalidation --distribution-id E1WYWP4JAH2VWU --paths '/*' --profile uptactics"
+    "postdeploy:staging": "aws cloudfront create-invalidation --distribution-id E1WYWP4JAH2VWU --paths '/*' --profile uptactics",
+
+    "predeploy:production": "REACT_APP_STAGE=production yarn run build",
+    "deploy:production": "aws s3 sync build/ s3://appextend.com --profile uptactics",
+    "postdeploy:production": "aws cloudfront create-invalidation --distribution-id E1A1D4UKCB7P3V --paths '/*' --profile uptactics"
   },
   "eslintConfig": {
     "extends": "react-app"
