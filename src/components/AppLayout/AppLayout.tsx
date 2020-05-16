@@ -21,6 +21,7 @@ import LayersIcon from "@material-ui/icons/Layers";
 import ReceiptIcon from "@material-ui/icons/Receipt";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import StorefrontIcon from '@material-ui/icons/Storefront';
+import VpnKey from '@material-ui/icons/VpnKey';
 import { usePreferences } from "../../context/PreferencesContext";
 import { useHistory } from "react-router";
 import { useUser } from "../../context/UserContext";
@@ -197,6 +198,12 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ title, children }) => {
                 <StorefrontIcon />
               </ListItemIcon>
               <ListItemText primary="Vendors" />
+            </ListItem>
+            <ListItem button onClick={() => history.push("/tokens")}>
+              <ListItemIcon>
+                <VpnKey />
+              </ListItemIcon>
+              <ListItemText primary="Tokens" />
             </ListItem>
           </div>
         </List>

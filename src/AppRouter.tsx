@@ -4,6 +4,7 @@ import { HomeScreen } from "./screens/HomeScreen";
 import { RulesScreen } from "./screens/RulesScreen";
 import { InvoiceScreen } from "./screens/InvoiceScreen";
 import { VendorsScreen } from "./screens/VendorsScreen";
+import { TokensScreen } from "./screens/TokensScreen";
 
 export const AppRouter: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ export const AppRouter: React.FC = () => {
         <Route exact={true} path="/" component={HomeScreen} />
         <Route exact={true} path="/rules" component={RulesScreen} />
         <Route exact={true} path="/vendors" component={VendorsScreen} />
+        <Route exact={true} path="/tokens" component={TokensScreen} />
         <Route
           exact={true}
           path="/invoices/:invoiceId"

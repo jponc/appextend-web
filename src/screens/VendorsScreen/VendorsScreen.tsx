@@ -26,7 +26,7 @@ export const VendorsScreen = () => {
   };
 
   return (
-    <AppLayout title="Rules">
+    <AppLayout title="Vendors">
       {!doneFetching ? (
         <Loading />
       ) : (

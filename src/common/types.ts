@@ -51,3 +51,9 @@ export type ActivityLog = {
   message: string;
   createdAt: string;
 };
+
+export type AppSettingsTokens = {
+  refresh_token: string;
+  access_token: string;
+  access_token_expiration_date: string;
+};
