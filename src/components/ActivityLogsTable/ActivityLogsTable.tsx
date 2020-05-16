@@ -7,7 +7,7 @@ import {
   Typography,
   Divider,
 } from "@material-ui/core";
-import dayjs from "dayjs";
+import { getDateTime } from "../../utils/getDateTime";
 
 type ActivityLogsTableProps = {
   activityLogs: ActivityLog[];
@@ -18,14 +18,13 @@ type ActivityLogRowProps = {
 };
 
 const ActivityLogRow: React.FC<ActivityLogRowProps> = ({ activityLog }) => {
-  const date = dayjs(activityLog.createdAt).format("MMMM D, YYYY hh:mm:ss A");
   return (
     <ListItem alignItems="flex-start">
       <ListItemText
         secondary={
           <React.Fragment>
             <Typography component="span" variant="body2" color="textPrimary">
-              {date}
+              {getDateTime(activityLog.createdAt)}
             </Typography>
             <Typography component="span"> — {activityLog.message}</Typography>
           </React.Fragment>

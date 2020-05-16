@@ -4,8 +4,7 @@ import { Invoice } from "../../common/types";
 import { Typography, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { InvoiceStatus } from "../InvoiceStatus";
-
-import dayjs from "dayjs";
+import { getDateTime } from "../../utils/getDateTime";
 
 const useStyles = makeStyles({
   container: {
@@ -42,7 +41,7 @@ export const InvoiceInfo: React.FC<InvoiceInfoProps> = ({ invoice }) => {
       </Typography>
 
       <Typography variant="caption" gutterBottom>
-        Created At: {dayjs(invoice.createdAt).format("YYYY-MM-DD")}
+        Created At: {getDateTime(invoice.createdAt)}
       </Typography>
     </Paper>
   );

@@ -3,8 +3,8 @@ import { Invoice, InvoiceStatuses } from "../../common/types";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Chip from "@material-ui/core/Chip";
-import dayjs from "dayjs";
 import { Link } from "react-router-dom";
+import { getDateTime } from "../../utils/getDateTime";
 
 type InvoiceRowProps = {
   invoice: Invoice;
@@ -19,7 +19,7 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => (
     <TableCell align="right">{invoice.number}</TableCell>
     <TableCell align="right">${invoice.totalAmount}</TableCell>
     <TableCell align="right">
-      {dayjs(invoice.createdAt).format("YYYY-MM-DD")}
+      {getDateTime(invoice.createdAt)}
     </TableCell>
     <TableCell align="right">
       <Chip
