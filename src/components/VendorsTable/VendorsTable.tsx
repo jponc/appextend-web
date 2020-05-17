@@ -11,9 +11,15 @@ import { VendorRow } from "../VendorRow";
 
 type VendorsTableProps = {
   vendors: Vendor[];
+  onDelete: (vendor: Vendor) => void;
+  onEdit: (vendor: Vendor) => void;
 };
 
-export const VendorsTable: React.FC<VendorsTableProps> = ({ vendors }) => {
+export const VendorsTable: React.FC<VendorsTableProps> = ({
+  vendors,
+  onDelete,
+  onEdit,
+}) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -22,11 +28,18 @@ export const VendorsTable: React.FC<VendorsTableProps> = ({ vendors }) => {
             <TableCell>ID</TableCell>
             <TableCell>Name</TableCell>
             <TableCell>Minimum Amount</TableCell>
+            <TableCell>Custom PO Memo</TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {vendors.map((vendor) => (
-            <VendorRow key={vendor.id} vendor={vendor} />
+            <VendorRow
+              key={vendor.id}
+              vendor={vendor}
+              onDelete={onDelete}
+              onEdit={onEdit}
+            />
           ))}
         </TableBody>
       </Table>

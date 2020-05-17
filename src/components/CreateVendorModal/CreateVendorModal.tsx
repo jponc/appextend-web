@@ -8,45 +8,47 @@ import {
   Button,
 } from "@material-ui/core";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import {Vendor} from "../../common/types";
+import { Vendor } from "../../common/types";
 
 type CreateVendorModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (newVendor: Vendor) => void
+  onSubmit: (newVendor: Vendor) => void;
+  vendor?: Vendor;
 };
 
 export const CreateVendorModal: React.FC<CreateVendorModalProps> = ({
   isOpen,
   onClose,
-  onSubmit
+  onSubmit,
+  vendor,
 }) => {
   const classes = useStyles();
+
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [minimumAmount, setMinimumAmount] = useState<string>("0");
-
-  const reset = () => {
-    setId("");
-    setName("");
-    setMinimumAmount("0");
-  }
+  const [customPurchaseOrderMemo, setCustomPurchaseOrderMemo] = useState<
+    string
+  >("");
 
   useEffect(() => {
-    if (!isOpen) {
-      reset();
-    }
-  }, [isOpen])
+    setId(vendor?.id || "");
+    setName(vendor?.name || "");
+    setMinimumAmount((vendor?.minimumAmount || 0).toString());
+    setCustomPurchaseOrderMemo(vendor?.customPurchaseOrderMemo || "");
+  }, [vendor]);
 
   const onSubmitHandler = () => {
     const newVendor: Vendor = {
       id,
       name,
-      minimumAmount: parseInt(minimumAmount)
-    }
+      minimumAmount: parseInt(minimumAmount),
+      customPurchaseOrderMemo,
+    };
 
-    onSubmit(newVendor)
-  }
+    onSubmit(newVendor);
+  };
 
   return (
     <Modal
@@ -62,13 +64,16 @@ export const CreateVendorModal: React.FC<CreateVendorModalProps> = ({
     >
       <Slide direction="up" in={isOpen} mountOnEnter unmountOnExit>
         <div style={{ top: "25%", margin: "auto" }} className={classes.paper}>
-          <Typography variant="h6">Add a vendor</Typography>
+          <Typography variant="h6">
+            {vendor ? "Edit" : "Add"} vendor
+          </Typography>
 
           <div>
             <FormGroup>
               <TextField
                 required
                 label="Vendor ID"
+                value={id}
                 onChange={(e) => setId(e.currentTarget.value)}
               />
             </FormGroup>
@@ -77,6 +82,7 @@ export const CreateVendorModal: React.FC<CreateVendorModalProps> = ({
               <TextField
                 required
                 label="Vendor Name"
+                value={name}
                 onChange={(e) => setName(e.currentTarget.value)}
               />
             </FormGroup>
@@ -86,12 +92,27 @@ export const CreateVendorModal: React.FC<CreateVendorModalProps> = ({
                 required
                 type="number"
                 label="Minimum amount to create PO ($)"
-                defaultValue="0"
+                value={minimumAmount}
                 onChange={(e) => setMinimumAmount(e.currentTarget.value)}
               />
             </FormGroup>
 
-            <Button onClick={onSubmitHandler} style={{ marginTop: 20 }} variant="contained">
+            <FormGroup>
+              <TextField
+                required
+                label="Custom Purchase Order Memo"
+                value={customPurchaseOrderMemo}
+                onChange={(e) =>
+                  setCustomPurchaseOrderMemo(e.currentTarget.value)
+                }
+              />
+            </FormGroup>
+
+            <Button
+              onClick={onSubmitHandler}
+              style={{ marginTop: 20 }}
+              variant="contained"
+            >
               Submit
             </Button>
           </div>

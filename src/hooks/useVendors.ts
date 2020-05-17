@@ -3,6 +3,8 @@ import { Vendor } from "../common/types";
 import {
   getVendors,
   createVendor as createVendorAction,
+  updateVendor as updateVendorAction,
+  deleteVendor as deleteVendorAction,
 } from "../actions/vendors";
 
 export const useVendors = (token: string) => {
@@ -16,10 +18,20 @@ export const useVendors = (token: string) => {
     })();
   }, [token]);
 
-  const createVendor = async (newVendor: Vendor) => {
-    await createVendorAction(token, newVendor);
-    setVendors(await getVendors(token))
+  const createVendor = async (vendor: Vendor) => {
+    await createVendorAction(token, vendor);
+    setVendors(await getVendors(token));
   };
 
-  return { vendors, doneFetching, createVendor };
+  const updateVendor = async (vendor: Vendor) => {
+    await updateVendorAction(token, vendor);
+    setVendors(await getVendors(token));
+  };
+
+  const deleteVendor = async (vendorId: string) => {
+    await deleteVendorAction(token, vendorId);
+    setVendors(await getVendors(token));
+  };
+
+  return { vendors, doneFetching, createVendor, updateVendor, deleteVendor };
 };

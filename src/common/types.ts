@@ -44,6 +44,7 @@ export type Vendor = {
   id: string;
   name: string;
   minimumAmount: number;
+  customPurchaseOrderMemo: string;
 }
 
 export type ActivityLog = {

@@ -27,8 +27,51 @@ export const createVendor = async (
     method: "POST",
     headers: buildHeaders(token),
     body: JSON.stringify({
-      body: newVendor
+      body: newVendor,
     }),
+  });
+
+  const json = await res.json();
+
+  if (json.error) {
+    throw new Error(json.error);
+  }
+
+  return json.body;
+};
+
+export const updateVendor = async (
+  token: string,
+  vendor: Vendor
+): Promise<Vendor> => {
+  const url = `${config.apiHost}/vendors/${vendor.id}`;
+
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: buildHeaders(token),
+    body: JSON.stringify({
+      body: vendor,
+    }),
+  });
+
+  const json = await res.json();
+
+  if (json.error) {
+    throw new Error(json.error);
+  }
+
+  return json.body;
+};
+
+export const deleteVendor = async (
+  token: string,
+  vendorId: string
+): Promise<Vendor> => {
+  const url = `${config.apiHost}/vendors/${vendorId}`;
+
+  const res = await fetch(url, {
+    method: "DELETE",
+    headers: buildHeaders(token),
   });
 
   const json = await res.json();
