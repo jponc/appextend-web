@@ -5,15 +5,16 @@ import { Typography, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { InvoiceStatus } from "../InvoiceStatus";
 import { getDateTime } from "../../utils/getDateTime";
+import NumberFormat from "react-number-format";
 
 const useStyles = makeStyles({
   container: {
-    padding: 20
+    padding: 20,
   },
   heading: {
     display: "flex",
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
 });
 
 type InvoiceInfoProps = {
@@ -37,7 +38,13 @@ export const InvoiceInfo: React.FC<InvoiceInfoProps> = ({ invoice }) => {
         Customer Name: {invoice.customerName}
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Total Amount: ${invoice.totalAmount}
+        Total Amount: &nbsp;
+        <NumberFormat
+          value={invoice.totalAmount}
+          displayType={"text"}
+          thousandSeparator={true}
+          prefix={"$"}
+        />
       </Typography>
 
       <Typography variant="caption" gutterBottom>

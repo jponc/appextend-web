@@ -11,7 +11,7 @@ import { VendorsTable } from "../../components/VendorsTable";
 
 export const VendorsScreen = () => {
   const { token } = useUser();
-  const { vendors, doneFetching, createVendor, deleteVendor, updateVendor } = useVendors(token);
+  const { vendors, doneFetching, createVendor, deleteVendor } = useVendors(token);
   const { setSuccess, setError } = useFeedback();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedVendor, setSelectedVendor] = useState<Vendor | undefined>(undefined);

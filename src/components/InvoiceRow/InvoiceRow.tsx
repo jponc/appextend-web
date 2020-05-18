@@ -5,6 +5,7 @@ import TableCell from "@material-ui/core/TableCell";
 import Chip from "@material-ui/core/Chip";
 import { Link } from "react-router-dom";
 import { getDateTime } from "../../utils/getDateTime";
+import NumberFormat from "react-number-format";
 
 type InvoiceRowProps = {
   invoice: Invoice;
@@ -17,10 +18,15 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => (
     </TableCell>
     <TableCell align="right">{invoice.id}</TableCell>
     <TableCell align="right">{invoice.number}</TableCell>
-    <TableCell align="right">${invoice.totalAmount}</TableCell>
     <TableCell align="right">
-      {getDateTime(invoice.createdAt)}
+      <NumberFormat
+        value={invoice.totalAmount}
+        displayType={"text"}
+        thousandSeparator={true}
+        prefix={"$"}
+      />
     </TableCell>
+    <TableCell align="right">{getDateTime(invoice.createdAt)}</TableCell>
     <TableCell align="right">
       <Chip
         label={invoice.status}
