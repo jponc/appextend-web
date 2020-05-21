@@ -6,6 +6,9 @@ import {
   TextField,
   FormGroup,
   Button,
+  FormControlLabel,
+  Checkbox,
+  Divider,
 } from "@material-ui/core";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Vendor } from "../../common/types";
@@ -31,12 +34,14 @@ export const CreateVendorModal: React.FC<CreateVendorModalProps> = ({
   const [customPurchaseOrderMemo, setCustomPurchaseOrderMemo] = useState<
     string
   >("");
+  const [sendEmail, setSendEmail] = useState<boolean>(false);
 
   useEffect(() => {
     setId(vendor?.id || "");
     setName(vendor?.name || "");
     setMinimumAmount((vendor?.minimumAmount || 0).toString());
     setCustomPurchaseOrderMemo(vendor?.customPurchaseOrderMemo || "");
+    setSendEmail(vendor ? vendor.sendEmail : false);
   }, [vendor]);
 
   const onSubmitHandler = () => {
@@ -45,6 +50,7 @@ export const CreateVendorModal: React.FC<CreateVendorModalProps> = ({
       name,
       minimumAmount: parseInt(minimumAmount),
       customPurchaseOrderMemo,
+      sendEmail,
     };
 
     onSubmit(newVendor);
@@ -64,9 +70,7 @@ export const CreateVendorModal: React.FC<CreateVendorModalProps> = ({
     >
       <Slide direction="up" in={isOpen} mountOnEnter unmountOnExit>
         <div style={{ top: "25%", margin: "auto" }} className={classes.paper}>
-          <Typography variant="h6">
-            {vendor ? "Edit" : "Add"} vendor
-          </Typography>
+          <Typography variant="h6">{vendor ? "Edit" : "Add"} vendor</Typography>
 
           <div>
             <FormGroup>
@@ -107,6 +111,18 @@ export const CreateVendorModal: React.FC<CreateVendorModalProps> = ({
                 }
               />
             </FormGroup>
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={sendEmail}
+                  onChange={(e) => setSendEmail(e.target.checked)}
+                />
+              }
+              label="Send Email"
+            />
+
+            <Divider />
 
             <Button
               onClick={onSubmitHandler}

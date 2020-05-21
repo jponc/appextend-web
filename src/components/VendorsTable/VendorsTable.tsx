@@ -29,6 +29,7 @@ export const VendorsTable: React.FC<VendorsTableProps> = ({
             <TableCell>Name</TableCell>
             <TableCell>Minimum Amount</TableCell>
             <TableCell>Custom PO Memo</TableCell>
+            <TableCell>Send Email</TableCell>
             <TableCell></TableCell>
           </TableRow>
         </TableHead>

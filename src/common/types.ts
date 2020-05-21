@@ -45,6 +45,7 @@ export type Vendor = {
   name: string;
   minimumAmount: number;
   customPurchaseOrderMemo: string;
+  sendEmail: boolean;
 }
 
 export type ActivityLog = {
