@@ -1,23 +1,15 @@
 import React from "react";
-import { Invoice, InvoiceStatuses } from "../../common/types";
+import { Invoice } from "../../common/types";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import Chip from "@material-ui/core/Chip";
 import { Link } from "react-router-dom";
 import { getDateTime } from "../../utils/getDateTime";
 import NumberFormat from "react-number-format";
+import { InvoiceStatus } from "../InvoiceStatus";
 
 type InvoiceRowProps = {
   invoice: Invoice;
 };
-
-const statusColours = {
-  [InvoiceStatuses.Incomplete]: "#717171",
-  [InvoiceStatuses.Complete]: "#4caf50",
-  [InvoiceStatuses.POCreated]: "#4caf50",
-  [InvoiceStatuses.POSent]: "#2196f3",
-  [InvoiceStatuses.NoMatch]: "#f44336",
-}
 
 export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => (
   <TableRow>
@@ -36,11 +28,7 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => (
     </TableCell>
     <TableCell align="right">{getDateTime(invoice.createdAt)}</TableCell>
     <TableCell align="right">
-      <Chip
-        label={invoice.status}
-        color="primary"
-        style={{ backgroundColor: statusColours[invoice.status] }}
-      />
+      <InvoiceStatus status={invoice.status} />
     </TableCell>
   </TableRow>
 );
