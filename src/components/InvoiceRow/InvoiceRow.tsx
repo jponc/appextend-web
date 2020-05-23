@@ -12,7 +12,7 @@ type InvoiceRowProps = {
 };
 
 const statusColours = {
-  [InvoiceStatuses.Incomplete]: "#ff9800",
+  [InvoiceStatuses.Incomplete]: "#717171",
   [InvoiceStatuses.Complete]: "#4caf50",
   [InvoiceStatuses.POCreated]: "#4caf50",
   [InvoiceStatuses.POSent]: "#2196f3",
