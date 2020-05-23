@@ -11,6 +11,14 @@ type InvoiceRowProps = {
   invoice: Invoice;
 };
 
+const statusColours = {
+  [InvoiceStatuses.Incomplete]: "#ff9800",
+  [InvoiceStatuses.Complete]: "#4caf50",
+  [InvoiceStatuses.POCreated]: "#4caf50",
+  [InvoiceStatuses.POSent]: "#2196f3",
+  [InvoiceStatuses.NoMatch]: "#f44336",
+}
+
 export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => (
   <TableRow>
     <TableCell component="th" scope="row">
@@ -30,9 +38,8 @@ export const InvoiceRow: React.FC<InvoiceRowProps> = ({ invoice }) => (
     <TableCell align="right">
       <Chip
         label={invoice.status}
-        color={
-          invoice.status === InvoiceStatuses.Complete ? "primary" : "secondary"
-        }
+        color="primary"
+        style={{ backgroundColor: statusColours[invoice.status] }}
       />
     </TableCell>
   </TableRow>

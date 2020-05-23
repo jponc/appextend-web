@@ -1,6 +1,10 @@
 export enum InvoiceStatuses {
   Incomplete = "Incomplete",
   Complete = "Complete",
+
+  POCreated = "POCreated",
+  POSent = "POSent",
+  NoMatch = "NoMatch"
 }
 
 export type Invoice = {
